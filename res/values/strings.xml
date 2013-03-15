@@ -6,8 +6,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="bill_amount">Bill Amount</string>
     <string name="round_to_nearest">Round to nearest dollar</string>
-    <string name="bill_amount_text">Bill Amount</string>
+    <string name="bill_amount_text">Bill Amount ($)</string>
     <string name="button_calculate">Calculate</string>
-    <string name="text_tip">"Tip: "</string>
+    <string name="text_tip">&quot;Tip: $&quot;</string>
+    <string name="tip_percent">12</string>
 
 </resources>
