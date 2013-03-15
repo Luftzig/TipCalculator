@@ -6,16 +6,18 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class TipCalculatorActivity extends Activity implements android.view.View.OnClickListener {
+public class TipCalculatorActivity extends Activity implements OnClickListener {
 
-    private boolean roundTo;
+    private boolean roundTo = false;
     private EditText input;
     private TextView tip;
+    private CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +27,19 @@ public class TipCalculatorActivity extends Activity implements android.view.View
         input = (EditText) findViewById(R.id.edtBillAmount);
         tip = (TextView) findViewById(R.id.txtTipResult);
         Button calc = (Button) findViewById(R.id.btnCalculate);
-        calc.setOnClickListener(this);
-    }
+        checkBox = (CheckBox) findViewById(R.id.chkRound);
+        checkBox.setOnClickListener(new OnClickListener() {
 
-    public void onCheckboxClicked(View view) {
-        roundTo = ((CheckBox) view).isChecked();
+            public void onClick(View v) {
+                if (((CheckBox) v).isChecked()) {
+                    roundTo = true;
+                } else {
+                    roundTo = false;
+                }
+            }
+
+        });
+        calc.setOnClickListener(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,7 +51,7 @@ public class TipCalculatorActivity extends Activity implements android.view.View
     @Override
     public void onClick(View arg0) {
         String bill = input.getText().toString();
-        if (bill == "") {
+        if (bill.isEmpty()) {
             return;
         }
         double billValue = Float.parseFloat(bill);
